@@ -52,6 +52,8 @@ export default function App() {
   const [selectedNode, setSelectedNode] = useState(null);
   const [highNode, setHighNode] = useState(null);
 
+  const scaleSize = 5 / (numColors + numEmptyTube);
+
   const findColNodes = col => {
     return _.chain(gameState)
       .filter(node => node.col === col)
@@ -321,18 +323,14 @@ export default function App() {
         </div>
         <div
           style={{
-            width: (numColors + numEmptyTube) * 80 + 20,
-            height: (tubeHeight + 1) * 60 + 40,
-            position: "absolute",
-            left: "50%",
+            width: scaleSize * ((numColors + numEmptyTube) * 80 + 20),
+            height: scaleSize * ((tubeHeight + 1) * 60 + 40),
+            position: "relative",
             margin: "auto",
             // marginTop: 50,
-            marginLeft: -((numColors + numEmptyTube) * 80 + 20) / 2,
             // border: "2px solid #BBBABB",
             // background: "rgba(255, 255, 255, 0.1)",
-            borderRadius: 15,
-            transform: `scale(${5 / (numColors + numEmptyTube)})`,
-            transformOrigin: "top center"
+            borderRadius: 15
           }}
         >
           {_.range(numColors + numEmptyTube).map(col => (
@@ -341,11 +339,11 @@ export default function App() {
               onClick={onClickTube(col)}
               style={{
                 borderRadius: "0px 0px 60px 60px",
-                width: 60,
-                height: tubeHeight * 60,
+                width: scaleSize * 60,
+                height: scaleSize * tubeHeight * 60,
                 position: "absolute",
-                left: col * 80 + 15,
-                top: 1 * 60 + 30,
+                left: scaleSize * (col * 80 + 15),
+                top: scaleSize * (1 * 60 + 30),
                 transition: "all ease 0.2s",
                 border: themeDay ? `2px #ccc solid` : `2px white solid`,
                 borderTop: "none"
@@ -353,14 +351,14 @@ export default function App() {
             >
               <div
                 style={{
-                  borderRadius: 15,
-                  width: 65,
-                  height: 15,
+                  borderRadius: scaleSize * 15,
+                  width: scaleSize * 65,
+                  height: scaleSize * 15,
                   position: "absolute",
-                  left: -5,
-                  top: -15,
+                  left: scaleSize * -5,
+                  top: scaleSize * -15,
                   transition: "all ease 0.2s",
-                  border: themeDay ? `3px #ccc solid` : `3px white solid`,
+                  border: themeDay ? `2px #ccc solid` : `2px white solid`,
                   borderBottom: "0px"
                 }}
               />
@@ -370,16 +368,17 @@ export default function App() {
             <div
               key={key}
               style={{
-                borderRadius: 50,
+                borderRadius: scaleSize * 50,
                 background: colors[colorIndex],
-                width: 50,
-                height: 50,
+                width: scaleSize * 50,
+                height: scaleSize * 50,
                 position: "absolute",
-                left: col * 80 + 20,
+                left: scaleSize * (col * 80 + 20),
                 top:
-                  hashPosition({ row, col }) === highNode
+                  scaleSize *
+                  (hashPosition({ row, col }) === highNode
                     ? 0 * 60 + 10
-                    : (row + 1) * 60 + 30,
+                    : (row + 1) * 60 + 30),
                 transition: "all ease 0.2s",
                 border: `2px white solid`,
                 // boxShadow: themeDay
