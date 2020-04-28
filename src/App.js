@@ -323,12 +323,16 @@ export default function App() {
           style={{
             width: (numColors + numEmptyTube) * 80 + 20,
             height: (tubeHeight + 1) * 60 + 40,
-            position: "relative",
+            position: "absolute",
+            left: "50%",
             margin: "auto",
             marginTop: 50,
+            marginLeft: -((numColors + numEmptyTube) * 80 + 20) / 2,
             // border: "2px solid #BBBABB",
             // background: "rgba(255, 255, 255, 0.1)",
-            borderRadius: 15
+            borderRadius: 15,
+            transform: `scale(${5 / (numColors + numEmptyTube)})`,
+            transformOrigin: "center center"
           }}
         >
           {_.range(numColors + numEmptyTube).map(col => (
