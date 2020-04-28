@@ -1,0 +1,36 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overscroll-behavior: none;
+  overflow: hidden;
+}
+
+div {
+  height: 100%;
+}
+
+.rc-slider-handle {
+  transform: translateX(-50%) scale(1.5) !important;
+  border-color: #ddd;
+  background: black;
+}
+
+.rc-slider-handle:hover {
+  border-color: #ddd;
+  background: black;
+}
+
+.rc-slider-dot-active {
+  border-color: #ddd;
+}
+
+.rc-slider-track {
+  background: transparent;
+}
